@@ -12,5 +12,14 @@ const nextConfig = {
 
   // Optional: Change the output directory `out` -> `dist`
   distDir: process.env.NODE_ENV === 'production' ? 'docs' : '.next',
+
+  async rewrites() {
+    return [
+      {
+        source: '/api/v1',
+        destination: 'http://localhost:9528',
+      }
+    ]
+  }
 }
 module.exports = nextConfig
