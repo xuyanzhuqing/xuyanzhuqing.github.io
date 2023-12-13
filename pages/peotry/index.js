@@ -1,10 +1,11 @@
 import Layout from '/components/Layout'
-function HomePage() {
+
+function PoetryPage() {
   return (
     <Layout>
-      home page
+      Poetry page
     </Layout>
   )
 }
 
-export default HomePage
+export default PoetryPage
