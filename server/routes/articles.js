@@ -4,21 +4,34 @@ const ResponseHandler = require('../utils/response')
 
 module.exports = function (router) {
   router.get("/", (ctx, next) => {
-    const users = ctx.db.data.data;
+    const users = ctx.db.articles.data;
     ctx.body = new ResponseHandler(ctx, users);
   });
 
   router.post("/", koaBody(), async (ctx) => {
-    console.info(ctx.request.body);
     const row = ctx.request.body
-    const users = ctx.db.data.data;
-    const id = users.length + 1
-    users.push(Object.assign(row, {
-      id,
+    const articles = ctx.db.articles;
+    const typeArticles = ctx.db[row.type]
+
+    const { desc, content, ...rest } = row
+
+    const draft = Object.assign({}, rest, {
+      content,
+      id: typeArticles.data.data.length + 1,
       createTime: new Date().toUTCString()
+    })
+    typeArticles.data.data.push(draft)
+
+    articles.data.data.push(Object.assign({}, rest, {
+      desc,
+      id: articles.data.data.length + 1,
+      articleId: draft.id
     }))
-    ctx.db.write()
-    ctx.body = new ResponseHandler(ctx, row);
+
+    articles.write()
+    typeArticles.write()
+
+    ctx.body = new ResponseHandler(ctx, draft);
   });
 
   // // curl -X PATCH http://localhost:3000/user/3 -d "name=cungen"
