@@ -4,7 +4,7 @@ const ResponseHandler = require('../utils/response')
 
 module.exports = function (router) {
   router.get("/", async (ctx, next) => {
-    const users = await ctx.db.data;
+    const users = await ctx.db.data.data;
     ctx.body = new ResponseHandler(ctx, users);
   });
 

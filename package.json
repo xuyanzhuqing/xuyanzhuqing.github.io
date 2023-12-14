@@ -19,6 +19,7 @@
     "@headlessui/react": "^1.7.17",
     "@heroicons/react": "^2.0.18",
     "@koa/cors": "^5.0.0",
+    "axios": "^1.6.2",
     "fs-extra": "^11.2.0",
     "koa-body": "^6.0.1",
     "koa-compose": "^4.1.0",
@@ -27,7 +28,8 @@
     "next": "^14.0.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "require-context": "^1.1.0"
+    "require-context": "^1.1.0",
+    "swr": "^2.2.4"
   },
   "devDependencies": {
     "@types/node": "20.10.4",

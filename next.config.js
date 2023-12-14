@@ -2,7 +2,7 @@
  * @type {import('next').NextConfig}
  */
 const nextConfig = {
-  output: 'export',
+  // output: 'export',
 
   // Optional: Change links `/me` -> `/me/` and emit `/me.html` -> `/me/index.html`
   trailingSlash: true,
@@ -16,8 +16,8 @@ const nextConfig = {
   async rewrites() {
     return [
       {
-        source: '/api/v1',
-        destination: 'http://localhost:9528',
+        source: '/api/v1/:slug*',
+        destination: 'http://localhost:9528/api/v1/:slug*',
       }
     ]
   }
