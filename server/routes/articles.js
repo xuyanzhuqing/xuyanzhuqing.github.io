@@ -15,17 +15,19 @@ module.exports = function (router) {
 
     const { desc, content, ...rest } = row
 
+    const createTime = new Date().toUTCString()
     const draft = Object.assign({}, rest, {
       content,
       id: typeArticles.data.data.length + 1,
-      createTime: new Date().toUTCString()
+      createTime
     })
     typeArticles.data.data.push(draft)
 
     articles.data.data.push(Object.assign({}, rest, {
       desc,
       id: articles.data.data.length + 1,
-      articleId: draft.id
+      articleId: draft.id,
+      createTime
     }))
 
     articles.write()

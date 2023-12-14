@@ -3,7 +3,7 @@
 function ArticlePage() {
   return (
     <div>
-      ArticlePage
+      ArticlePage slug
     </div>
   )
 }
