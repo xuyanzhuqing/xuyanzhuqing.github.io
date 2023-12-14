@@ -4,7 +4,9 @@ import { Fragment, useState } from 'react'
 import { Dialog, Disclosure, Popover, Transition } from '@headlessui/react'
 import { Bars3Icon } from '@heroicons/react/24/outline'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
-import { articles } from '/config'
+import { articles as AllArticles } from '/config'
+
+const articles = AllArticles.filter(article => article.value !== 'poetry')
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
