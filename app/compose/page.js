@@ -12,6 +12,7 @@ function classNames(...classes) {
 
 var toolbarOptions = [
   ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+  ['link', 'image'],
   ['blockquote', 'code-block'],
 
   [{ 'header': 1 }, { 'header': 2 }],               // custom button values
@@ -32,6 +33,7 @@ var toolbarOptions = [
 
 function ComposePage() {
   let editor = useRef(null)
+  let fileRef = useRef(null)
   let titleRef = useRef(null)
   const [selected, setSelected] = useState(articles[0])
   return (
@@ -130,13 +132,42 @@ function ComposePage() {
       <div id="editor" style={{ 'min-height': '18rem' }}>
         <p>Hello World!</p>
       </div>
+      <input ref={fileRef} type="file" style={{ display: 'none' }} />
       <Script src="https://cdn.quilljs.com/1.3.6/quill.js" onReady={() => {
-        editor.current = new Quill('#editor', {
+        const quill = new Quill('#editor', {
           modules: {
             toolbar: toolbarOptions
           },
           theme: 'snow',
         });
+
+        var toolbar = quill.getModule('toolbar')
+        toolbar.addHandler('link', function (value) {
+          if (value) {
+            var href = prompt('Enter the URL');
+            this.quill.format('link', href);
+          } else {
+            this.quill.format('link', false);
+          }
+        })
+
+        fileRef.current.addEventListener('change', (e) => {
+          const formData = new FormData()
+          formData.append("file", e.target.files[0]);
+          formData.append('name', 'xxxx')
+          // axios
+          // quill.format('image', 'https://img.zcool.cn/community/01836955435fde0000019ae9ee9b86.jpg@1280w_1l_2o_100sh.jpg')
+        })
+
+        toolbar.addHandler('image', function (value) {
+          if (value) {
+            fileRef.current.click()
+          } else {
+            this.quill.format('image', false);
+          }
+        })
+
+        editor.current = quill
       }}></Script >
     </>
   )

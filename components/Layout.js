@@ -62,7 +62,7 @@ function LayoutPage({ children }) {
                         <item.icon className="h-6 w-6 text-gray-600 group-hover:text-indigo-600" aria-hidden="true" />
                       </div>
                       <div className="flex-auto">
-                        <a href={`/article/${item.value}`} className="block font-semibold text-gray-900">
+                        <a href={`/article?type=${item.value}`} className="block font-semibold text-gray-900">
                           {item.label}
                           <span className="absolute inset-0" />
                         </a>
@@ -109,7 +109,7 @@ function LayoutPage({ children }) {
                           <Disclosure.Button
                             key={item.value}
                             as="a"
-                            href={`/article/${item.value}`}
+                            href={`/article?type=${item.value}`}
                             className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                           >
                             {item.label}

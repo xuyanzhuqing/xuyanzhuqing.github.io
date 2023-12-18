@@ -1,9 +1,8 @@
 'use client'
-import { useArticles } from '/api/article'
-import Link from 'next/link'
+import { useArticlesApi } from '/api/article'
 
 function HomePage() {
-  const { data: articles, error, isLoading } = useArticles()
+  const { data: articles, error, isLoading } = useArticlesApi()
   if (isLoading) {
     return (
       <div>loading</div>
@@ -14,7 +13,7 @@ function HomePage() {
     <ul role="list" className="divide-y divide-gray-100">
       {articles.data.data.map((article) => (
         <li key={article.id} className="flex justify-between gap-x-6 py-5" onClick={() => {
-          window.location.replace(`/article/${article.type}?id=${article.id}`);
+          window.location.replace(`/article/single?type=${article.type}&id=${article.id}`);
         }}>
           <div className="flex min-w-0 gap-x-4">
             <div className="min-w-0 flex-auto">
