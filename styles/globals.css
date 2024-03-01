@@ -1,3 +1,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.website-report {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 10px 0;
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: space-around;
+  border-top: 1px solid #ccc;
+  font-size: 12px;
+}
+
+.website-desc {
+  color: #555
+}
+
+.website-report-link {
+  display: flex;
+}
