@@ -2,14 +2,20 @@ import useSWR from 'swr'
 import { createAxios } from '/utils/axios'
 
 export function useArticlesApi() {
-  return useSWR(createAxios.baseURL + '/articles.json', () => createAxios({
-    url: '/articles.json'
+  return useSWR('/articles', () => createAxios({
+    url: '/articles'
   }))
 }
 
-export function useRecordApi(type) {
-  return useSWR(createAxios.baseURL + `/${type}.json`, () => createAxios({
-    url: `/${type}.json`
+export function useRecordApi(id) {
+  return useSWR('/articles/' + id, () => createAxios({
+    url: '/articles/' + id
+  }))
+}
+
+export function useListCategoriesApi(category) {
+  return useSWR(`/articles/list/${category}`, () => createAxios({
+    url: `/articles/list/${category}`
   }))
 }
 

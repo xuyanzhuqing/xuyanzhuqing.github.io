@@ -16,10 +16,12 @@ const nextConfig = {
   async rewrites() {
     return [
       {
+        // source: '/api/v1/:slug*',
+        // destination: 'http://localhost:9528/api/v1/:slug*',
         source: '/api/v1/:slug*',
-        destination: 'http://localhost:9528/api/v1/:slug*',
+        destination: 'http://106.14.121.240/api/v1/:slug*'
       }
     ]
-  }
+  },
 }
 module.exports = nextConfig

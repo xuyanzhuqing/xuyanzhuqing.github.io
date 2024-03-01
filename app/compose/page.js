@@ -120,8 +120,10 @@ function ComposePage() {
             useAddArticle({
               "title": titleRef.current.value,
               "content": editor.current.getContents(),
-              "desc": editor.current.getText().slice(0, 100),
-              "type": selected.value
+              "description": editor.current.getText().slice(0, 100),
+              "category_id": selected.id,
+              user_id: 1,
+              "tags": "古典诗"
             })
           }}
         >

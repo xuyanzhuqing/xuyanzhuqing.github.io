@@ -6,17 +6,16 @@ import Script from 'next/script'
 
 function ArticlePage() {
   const params = useSearchParams()
-  const type = params.get('type')
   const id = params.get('id')
   let editor = useRef(null)
-  const { data: articles, error, isLoading } = useRecordApi(type)
+  const { data, error, isLoading } = useRecordApi(id)
   if (isLoading) {
     return (
       <div>loading</div>
     )
   }
+  const article = data.data.result[0]
 
-  const article = articles?.data?.data.find(article => article.id === parseInt(id))
   if (article) {
     return <>
       <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet" />
@@ -29,7 +28,7 @@ function ArticlePage() {
           theme: 'snow',
         })
         quill.enable(false)
-        quill.setContents(article.content)
+        quill.setContents(JSON.parse(article.content))
       }}></Script >
     </>
   } else {
